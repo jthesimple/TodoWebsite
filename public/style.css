@@ -1,0 +1,46 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows:  1fr 3fr;
+    margin: 0px;
+}
+
+.icon{
+    width: 50px;
+    height: 50px;
+}
+
+.header {
+    grid-column: 1/3;
+    grid-row: 1;
+    background-color: #73a24e;
+}
+
+.header > h1{
+    text-align: center;
+
+}
+
+.sidebar {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background-color: #a9c25d ;
+}
+
+.tabs{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.main-content{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    background-color: #f5eec2;
+}
