@@ -1,68 +1,21 @@
-export {addProjectListener};
-export {closeProjectListener};
-export{createNewProjectFolder};
-import { Project } from "./classes";
-export{clearMainContentsListener}
 
-const addProjectListener = function(){
-    const addButton = document.querySelector('.icon');
-    addButton.addEventListener('click', createNewProject);
+
+
+const addProjectFolderListener = function(){
+    const addFolder = document.querySelector('.projects-icon');
+    addFolder.addEventListener('click', createFolder);
 };
 
-const closeProjectListener = function(){
-    const closeButton = document.querySelector('.close-modal-btn');
-    closeButton.addEventListener('click', closeProjectModal);
-};
+function createFolder(){
+    addFolderPopUp();
 
-const createNewProject = function(){
-    const modal = document.querySelector('.modal-container')
-    modal.classList.add('open');
-}; 
-
-const closeProjectModal = function(){
-    const modal = document.querySelector('.modal-container')
-    modal.classList.remove('open');
-};
-
-function createNewProjectFolder(){
-    const addButton = document.querySelector('.close-modal-btn');
-    addButton.addEventListener('click', createProject);
-};
-
-function createProject(){
-    let name = document.querySelector('#project-name').value;
-    let newInstance = new Project(name);
-    createElementsforNewProjectFolder(newInstance);
 
 };
 
-function createElementsforNewProjectFolder(project){
-    const tabs = document.querySelector('.project-tabs');
-    const folder = document.createElement('h3');
-    folder.setAttribute('class', 'project');
-    tabs.appendChild(folder);
-    folder.textContent = project.getName();
-    clearMainContentsListener(project)
-    
-}
-
-function clearMainContentsListener(project){
-    const project = document.querySelector('.project')
-    project.addEventListener('click', clearMainContents(project))
-}
-
-function clearMainContents(project){
-    const mainContentElement = document.querySelector('.main-content');
-    while (mainContentElement.firstChild) {
-        mainContentElement.removeChild(mainContentElement.lastChild);
-    }
-
-    mainContentElement.innerHTML = `<div class="project-content">
-                                    <h2>${project.getName()}</h2>
-                                    </div><div>
-                                    <button>Add Task</button>
-                                    </div>`
-
- };
-
- 
+function addFolderPopUp(){
+    const mainContent = document.querySelector('.main-content');
+    mainContent.innerHTML = `<h2 class="content-title">Create new Folder</h2>
+    <input type="text" placeholder="Folder Name" id="folder-name">
+    <p>Your todos will be stored in this folder.</p>
+    <input class='create-folder' type="submit">`
+};
