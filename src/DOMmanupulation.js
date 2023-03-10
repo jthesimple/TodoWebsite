@@ -1,8 +1,10 @@
 export {gymSession};
 export {closeSession};
 import { ExerciseSession } from "./classes";
-export{getValues};
+export{createNewProjectFolder};
 import { Sessions } from "./classes";
+import { Project } from "./classes";
+export{clearMainContentsListener}
 
 const gymSession = function(){
     const addButton = document.querySelector('.icon');
@@ -24,15 +26,39 @@ const closeGymSession = function(){
     modal.classList.remove('open');
 };
 
-function getValues(){
+function createNewProjectFolder(){
     const addButton = document.querySelector('.close-modal-btn');
-    addButton.addEventListener('click', sesh);
+    addButton.addEventListener('click', createProject);
 };
 
-function sesh(){
-    let array = new Sessions;
-    
-    
+function createProject(){
+    let name = document.querySelector('#project-name').value;
+    let newInstance = new Project(name);
+    createElementsforNewProjectFolder(newInstance);
 };
 
+function createElementsforNewProjectFolder(project){
+    const tabs = document.querySelector('.project-tabs');
+    const folder = document.createElement('h3');
+    folder.setAttribute('class', 'project');
+    tabs.appendChild(folder);
+    folder.textContent = project.getName();
+    
+}
 
+function clearMainContentsListener(){
+    const project = document.querySelector('.project')
+    project.addEventListener('click', clearMainContents)
+}
+
+function clearMainContents(){
+    const mainContentElement = document.querySelector('.main-content');
+    while (mainContentElement.firstChild) {
+        mainContentElement.removeChild(mainContentElement.lastChild);
+    }
+
+    mainContentElement.innerHTML = `<div class="project-content">
+                                    <h2>{project name}</h2>
+                                    </div>`
+
+ };

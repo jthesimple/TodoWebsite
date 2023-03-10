@@ -1,41 +1,23 @@
-export {ExerciseSession};
-export {Sessions};
+export{Project}
 
 
-const ExerciseSession = class {
-    constructor(type, date, location){
-        this.date = date;
-        this.location = location;
-        this.type = type;
-    }
-
-    newSession(){
-        const type = document.getElementById('type').value;
-        const date = document.getElementById('date').value;
-        const location = document.getElementById('location').value;
-        let object = new ExerciseSession(type,date,location); 
-        return object;
-
+const Todo = class {
+    constructor(title, description, dueDate, priority, notes){
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.notes = notes; 
     }
 }
 
-const Sessions = class{
-    constructor(){
-        this.sessions = [];
+const Project = class {
+    constructor(name){
+        this.name = name;
+        this.contents = [];
     }
 
-    pushObject(obj){
-        this.sessions.push(obj);
+    getName(){
+        return this.name;
     }
-
-
-    getAllSessions(){
-        console.log(this.sessions);
-    }
-
-
 }
-
-
-
-

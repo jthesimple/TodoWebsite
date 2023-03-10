@@ -2,9 +2,12 @@ import { gymSession } from "./DOMmanupulation";
 import { closeSession } from "./DOMmanupulation";
 import { ExerciseSession } from "./classes";
 import { getValues } from "./DOMmanupulation";
-import { Sessions } from "./classes";
+import { Project } from "./classes";
+import { createNewProjectFolder } from "./DOMmanupulation";
+import { clearMainContentsListener } from "./DOMmanupulation";
 
 
 gymSession();
 closeSession();
-getValues();
+createNewProjectFolder();
+
