@@ -1,27 +1,25 @@
-export {gymSession};
-export {closeSession};
-import { ExerciseSession } from "./classes";
+export {addProjectListener};
+export {closeProjectListener};
 export{createNewProjectFolder};
-import { Sessions } from "./classes";
 import { Project } from "./classes";
 export{clearMainContentsListener}
 
-const gymSession = function(){
+const addProjectListener = function(){
     const addButton = document.querySelector('.icon');
-    addButton.addEventListener('click', createGymSession);
+    addButton.addEventListener('click', createNewProject);
 };
 
-const closeSession = function(){
+const closeProjectListener = function(){
     const closeButton = document.querySelector('.close-modal-btn');
-    closeButton.addEventListener('click', closeGymSession);
+    closeButton.addEventListener('click', closeProjectModal);
 };
 
-const createGymSession = function(){
+const createNewProject = function(){
     const modal = document.querySelector('.modal-container')
     modal.classList.add('open');
 }; 
 
-const closeGymSession = function(){
+const closeProjectModal = function(){
     const modal = document.querySelector('.modal-container')
     modal.classList.remove('open');
 };
@@ -35,6 +33,7 @@ function createProject(){
     let name = document.querySelector('#project-name').value;
     let newInstance = new Project(name);
     createElementsforNewProjectFolder(newInstance);
+
 };
 
 function createElementsforNewProjectFolder(project){
@@ -43,22 +42,27 @@ function createElementsforNewProjectFolder(project){
     folder.setAttribute('class', 'project');
     tabs.appendChild(folder);
     folder.textContent = project.getName();
+    clearMainContentsListener(project)
     
 }
 
-function clearMainContentsListener(){
+function clearMainContentsListener(project){
     const project = document.querySelector('.project')
-    project.addEventListener('click', clearMainContents)
+    project.addEventListener('click', clearMainContents(project))
 }
 
-function clearMainContents(){
+function clearMainContents(project){
     const mainContentElement = document.querySelector('.main-content');
     while (mainContentElement.firstChild) {
         mainContentElement.removeChild(mainContentElement.lastChild);
     }
 
     mainContentElement.innerHTML = `<div class="project-content">
-                                    <h2>{project name}</h2>
+                                    <h2>${project.getName()}</h2>
+                                    </div><div>
+                                    <button>Add Task</button>
                                     </div>`
 
  };
+
+ 
