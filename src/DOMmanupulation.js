@@ -1,4 +1,5 @@
-
+import { Project } from "./classes";
+export{addProjectFolderListener};
 
 
 const addProjectFolderListener = function(){
@@ -8,8 +9,7 @@ const addProjectFolderListener = function(){
 
 function createFolder(){
     addFolderPopUp();
-
-
+    submitFolder(); 
 };
 
 function addFolderPopUp(){
@@ -18,4 +18,14 @@ function addFolderPopUp(){
     <input type="text" placeholder="Folder Name" id="folder-name">
     <p>Your todos will be stored in this folder.</p>
     <input class='create-folder' type="submit">`
+};
+
+
+function submitFolder(){
+    const submit = document.querySelector('.create-folder');
+    submit.addEventListener('click', Project.createFolder);
+};
+
+function displayFolder(folder){
+    console.log('win');
 };

@@ -1,3 +1,5 @@
+export {Project}
+
 
 const Todo = class {
     constructor(title, description, dueDate, priority, notes){
@@ -29,9 +31,8 @@ const Project = class {
 
     static createFolder(){
         const title = document.querySelector('#folder-name').value;
-
-        console.log(Folder);
-        return Folder;
-
+        const folder = new Project(title);
+        console.log(folder);
+        return folder;
     }
 }
