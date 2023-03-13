@@ -28,11 +28,4 @@ const Project = class {
     displayContents(){
         console.log(this.content);
     }
-
-    static createFolder(){
-        const title = document.querySelector('#folder-name').value;
-        const folder = new Project(title);
-        console.log(folder);
-        return folder;
-    }
 }
