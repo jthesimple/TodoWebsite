@@ -1,4 +1,5 @@
 import { Project } from "./classes";
+import { Todo } from "./classes";
 export{addProjectFolderListener};
 
 
@@ -29,6 +30,7 @@ function Folder(){
     const title = document.querySelector('#folder-name').value;
     const projectContainer = document.querySelector('.project-tabs');
     const projectHeader = document.createElement('h3');
+    projectHeader.setAttribute('class', 'created-project');
     const folder = new Project(title);
     console.log(folder);
     
@@ -36,9 +38,8 @@ function Folder(){
     projectContainer.append(projectHeader);
 
     clearMainContent();
-    populateTodoField();
+    populateTodoField(folder);
     createTodoListener();
-    return folder;
 };
 
 function clearMainContent(){
@@ -48,13 +49,15 @@ function clearMainContent(){
     };
 };
 
-function populateTodoField(){
+function populateTodoField(project){
     const mainContent = document.querySelector('.main-content');
-    mainContent.innerHTML = `<h2>Todo List</h2>
+    mainContent.innerHTML = `<h1 class='project-folder'>${project.getName()}</h1><h2>Todo List</h2>
     <p>Create or edit existing task below.</p>
     <ul class="todo-list">
     </ul>
     <img class='todo-icon' src="../images/plus-circle-outline.svg" alt="add icon">`;
+
+
 };
 
 function createTodoListener(){
@@ -72,7 +75,30 @@ function createTodo(){
         <input type="text" placeholder="description" class='todo-description'>
         <input type="date" placeholder="Due Date" class='todo-dueDate'>
         <input type="text" placeholder="Priority" class='priority'>
-        <inpt type="text" placeholder="Notes" class='notes'>`
+        <inpt type="text" placeholder="Notes" class='notes'>
+        <input type='submit' class='submit-todo'>`
     ;
     mainContent.insertBefore(todoContainer,todoList);
+    submitTodoListener();
+};
+
+function submitTodoListener(){
+    const submit = document.querySelector('.submit-todo');
+    submit.addEventListener('click', submitTodo);
+};
+
+function submitTodo(){
+   
+    const title = document.querySelector('.todo-title').value;
+    const description = document.querySelector('.todo-description').value;
+    const date = document.querySelector('.todo-dueDate').value;
+    const priority = document.querySelector('.priority').value;
+    const notes = document.querySelector('.notes').value;
+
+    const todo = new Todo(title, description, date, priority, notes);
+    
+};
+
+function selectProject(){
+
 };

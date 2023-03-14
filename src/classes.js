@@ -1,4 +1,5 @@
 export {Project}
+export{Todo};
 
 
 const Todo = class {
